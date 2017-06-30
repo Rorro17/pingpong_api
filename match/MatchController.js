@@ -13,6 +13,7 @@ var Match = require('./Match');
 router.post('/', function (req, res) {
 
     Match.create({
+            matchDay : req.body.matchDay,
             namep1 : req.body.namep1,
             puntosp1 : req.body.puntosp1,
             namep2 : req.body.namep2,
