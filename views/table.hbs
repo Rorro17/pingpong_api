@@ -1,0 +1,26 @@
+<h1>{{title}}</h1>
+<p>Welcome to the table {{title}}</p>
+
+
+<form>
+      <input name="namep1" type="text" placeholder="Firstname"/>
+      <input name="puntosp1" type="text" placeholder="Firstname"/>
+      <input name="namep2" type="text" placeholder="Lastname"/>
+      <input name="puntosp2" type="text" placeholder="Firstname"/>
+      <input name="winner" type="text" placeholder="Lastname"/>
+      <input type="submit" onclick="addMatch(document.getElementById('namep1').value,document.getElementById('puntosp1').value,document.getElementById('namep2').value,document.getElementById('puntosp2').value),document.getElementById('winner').value)"/>
+</form>
+</br>
+<button type="submit" onclick="UserAction()">Search</button>
+</br>
+
+</br>
+<div>
+<select id="selectPlayer">
+    <option>Choose a number</option>
+</select>
+<p>VS</p>
+<select id="selectPlayer2">
+    <option>Choose a number</option>
+</select>
+</div>
