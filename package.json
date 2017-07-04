@@ -12,10 +12,11 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "hbs": "~4.0.0",
+    "method-override": "^2.3.9",
     "mongoose": "^4.11.0",
     "node-dom": "^0.1.0"
   },
-   "engines": {
+  "engines": {
     "node": "6.11.0"
   }
 }
