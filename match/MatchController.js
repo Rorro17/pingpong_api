@@ -38,7 +38,7 @@ router.get('/', function (req, res) {
 });
 
 
-// DELETES A USER FROM THE DATABASE
+// DELETES A MATCH FROM THE DATABASE
 router.delete('/:id', function (req, res) {
 
     Match.findByIdAndRemove(req.params.id, function (err, match) {
