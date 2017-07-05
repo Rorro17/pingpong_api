@@ -42,7 +42,7 @@ exports.addUser = function(req, res) {
 //PUT - Update a register already exists
 exports.updateUser = function(req, res) {
     User.findById(req.params.id, function(err, user) {
-        user.name   = req.body.petId;
+        user.name   = req.body.name;
         user.profilePicUrl    = req.body.profilePicUrl;
 
         user.save(function(err) {
