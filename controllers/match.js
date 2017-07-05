@@ -48,9 +48,9 @@ exports.updateMatch = function(req, res) {
     Match.findById(req.params.id, function(err, match) {
         matchDay = req.body.matchDay;
             namep1 = req.body.namep1;
-            puntosp1 = req.body.puntosp1;
+            puntosp1 = req.body.pointsp1;
             namep2 = req.body.namep2;
-            puntosp2 = req.body.puntosp2;
+            puntosp2 = req.body.pointsp2;
 
         match.save(function(err) {
             if(err) return res.send(500, err.message);
