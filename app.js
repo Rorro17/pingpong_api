@@ -1,14 +1,43 @@
 // app.js
-var express = require('express');
-var app = express();
-var db = require('./db');
-var path = require('path');
-var bodyParser  = require("body-parser");
-var methodOverride = require("method-override");
+var express         = require("express"),
+    app             = express(),
+    db 				= require('./db'),
+    path 			= require('path'),
+    bodyParser      = require("body-parser"),
+    methodOverride  = require("method-override"),
+	mongoose = require('mongoose');
 
-app.get('/', function(req,res) {
-	res.send('Hello');
+//Middleware
+app.use(bodyParser.urlencoded({ extended: false }));  
+app.use(bodyParser.json());  
+app.use(methodOverride());
+
+// Import Models and controllers
+var models     = require('./models/user')(app, mongoose);
+var UserCtrl = require('./controllers/user');
+
+
+// Example Route
+var router = express.Router();
+router.get('/', function(req, res) {
+  res.send("Hello world!");
 });
+app.use(router);
+
+// API routes
+var users = express.Router();
+
+users.route('/users')
+  .get(UserCtrl.findAllUsers)
+  .post(UserCtrl.addUser);
+
+users.route('/users/:id')
+  .get(UserCtrl.findById)
+  .put(UserCtrl.updateUser)
+  .delete(UserCtrl.deleteUser);
+
+app.use('/api', users);
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -16,20 +45,16 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(bodyParser.urlencoded({ extended: false }));  
-app.use(bodyParser.json());  
-app.use(methodOverride());
-
-
 // ADD THESE TWO LINES
-var UserController = require('./user/UserController');
-app.use('/users', UserController);
+/*var UserController = require('./user/UserController');
+app.use('/users', UserController);*/
 
 var MatchController = require('./match/MatchController');
 app.use('/matches', MatchController);
 
-var table = require('./routes/table');
-app.use('/table', table);
+/*var table = require('./routes/table');
+app.use('/table', table);*/
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
