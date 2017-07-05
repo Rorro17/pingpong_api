@@ -12,6 +12,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());  
 app.use(methodOverride());
 
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
 // Import Models and controllers
 var models     = require('./models/user')(app, mongoose);
 var UserCtrl = require('./controllers/user');
@@ -44,14 +51,9 @@ users.route('/users/:id')
 app.use('/api', users);
 
 
-var MatchController = require('./match/MatchController');
-app.use('/matches', MatchController);
+//var MatchController = require('./match/MatchController');
+//app.use('/matches', MatchController);
 
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
 
 module.exports = app;
