@@ -16,6 +16,11 @@ app.use(methodOverride());
 var models     = require('./models/user')(app, mongoose);
 var UserCtrl = require('./controllers/user');
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // Example Route
 var router = express.Router();
@@ -39,15 +44,8 @@ users.route('/users/:id')
 app.use('/api', users);
 
 
-// ADD THESE TWO LINES
-/*var UserController = require('./user/UserController');
-app.use('/users', UserController);*/
-
 var MatchController = require('./match/MatchController');
 app.use('/matches', MatchController);
-
-/*var table = require('./routes/table');
-app.use('/table', table);*/
 
 
 app.use(express.static(path.join(__dirname, 'public')));
