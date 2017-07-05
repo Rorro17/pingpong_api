@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 // Import Models and controllers
-var models     = require('./models/user')(app, mongoose);
+var models = require('./models/user')(app, mongoose);
 var UserCtrl = require('./controllers/user');
 
 app.use(function(req, res, next) {
@@ -30,11 +30,11 @@ app.use(function(req, res, next) {
 });
 
 // Example Route
-var router = express.Router();
-router.get('/', function(req, res) {
-  res.send("Hello world!");
+//var router = express.Router();
+app.get('/', function(req, res) {
+  res.send("Hello YO!");
 });
-app.use(router);
+//app.use(router);
 
 // API routes
 var users = express.Router();

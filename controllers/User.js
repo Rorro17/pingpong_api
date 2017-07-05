@@ -1,4 +1,4 @@
-//File: controllers/users.js
+//File : controllers/users.js
 var mongoose = require('mongoose');
 var User  = mongoose.model('User');
 
