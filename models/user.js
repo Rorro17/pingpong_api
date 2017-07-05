@@ -6,6 +6,12 @@ var UserSchema = new mongoose.Schema({
   profilePicUrl: {type: String}
 });
 
-mongoose.model('User', UserSchema);
+//mongoose.model('User', UserSchema);
 
-module.exports = mongoose.model('User');
+//module.exports = mongoose.model('User');
+
+var User = mongoose.model('User', UserSchema);
+
+module.exports = {
+  User: User
+}

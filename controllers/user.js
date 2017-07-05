@@ -1,6 +1,7 @@
-//File : controllers/users.js
+//File : controllers/users.jss
 var mongoose = require('mongoose');
-var User  = mongoose.model('User');
+//var User  = mongoose.model('User');
+var User = require("../models/user").User;
 
 //GET - Return all users in the DB
 exports.findAllUsers = function(req, res) {

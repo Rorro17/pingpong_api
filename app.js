@@ -20,8 +20,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 // Import Models and controllers
-var models = require('./models/user')(app, mongoose);
+//var models = require('./models/user')(app, mongoose);
 var UserCtrl = require('./controllers/user');
+var MatchCtrl = require('./controllers/match');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -36,7 +37,7 @@ app.get('/', function(req, res) {
 });
 //app.use(router);
 
-// API routes
+// API routes User
 var users = express.Router();
 
 users.route('/users')
@@ -49,6 +50,20 @@ users.route('/users/:id')
   .delete(UserCtrl.deleteUser);
 
 app.use('/api', users);
+
+// API routes Matches
+var matches = express.Router();
+
+matches.route('/matches')
+  .get(MatchCtrl.findAllMatches)
+  .post(MatchCtrl.addMatch);
+
+matches.route('/matches/:id')
+  .get(MatchCtrl.findById)
+  .put(MatchCtrl.updateMatch)
+  .delete(MatchCtrl.deleteMatch);
+
+app.use('/api', matches);
 
 
 //var MatchController = require('./match/MatchController');
